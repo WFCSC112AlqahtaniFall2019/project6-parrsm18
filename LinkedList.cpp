@@ -31,12 +31,12 @@ LinkedList& LinkedList::operator=(const LinkedList &assignment) {
 }
 
 LinkedList::~LinkedList() {
-    Node* curr = head;
-    Node* afterCurr = curr->next;
-    while(curr->next != nullptr){
-        delete(curr);
-        curr = afterCurr;
-        afterCurr = afterCurr->next;
+    Node* curr = head; // Node is set to the head
+    Node* afterCurr = curr->next; // Node is set to one after the head
+    while(curr->next != nullptr){ // Iterates until current reaches the end of the list
+        delete(curr); // Deletes current
+        curr = afterCurr; // Sets current equal to the next node in the list
+        afterCurr = afterCurr->next; // Moves afterCurr one position ahead of current
     }
 
     cout << "Destructor called" << endl;
@@ -69,7 +69,7 @@ void LinkedList::PrintList() {
 }
 
 void LinkedList::Sort() {
-    Node* temp = head;
+    Node* temp;
     Node* previous = head;
     Node* curr = head->next;
 
@@ -86,20 +86,20 @@ void LinkedList::Sort() {
             if(curr->value < head->value){ // This branch is entered if the node that needs to be moved is less than the head in which case the head pointer needs to manipulated
                  previous->next = curr->next; // Links the previous node to the node after the current node
                  curr->next = nullptr; // breaks the connection between current and the next node
-                 curr->next = head; // Links the current node
-                 head = curr;
+                 curr->next = head; // Links the current node to the head
+                 head = curr; // Sets the head equal to the current node at the beginning of the list
             }
             else{ // This branch is entered when the node that needs to be moved is not less than the head and needs to be inserted somewhere else in the list
                 temp = head; // Sets temp to the beginning of the list
                 while (curr->value > temp->next->value && temp->next != nullptr){ // Iterates over the list and sets temp to the location that the current node needs to be set to
-                    temp = temp->next;
+                    temp = temp->next; // Moves temp forward to the next node
                 }
-                previous->next = curr->next;
-                curr->next = temp->next;
-                temp->next = curr;
+                previous->next = curr->next; // Links the previous node to the node after the current node
+                curr->next = nullptr; // breaks the connection between current and the next node
+                curr->next = temp->next; // Links the current node that needs to be inserted to the node after temporary
+                temp->next = curr; // Links temporary to the current node which was just relocated
             }
         }
-        curr = previous->next;
+        curr = previous->next; // Moves current one position ahead of previous
     }
-
 }

@@ -18,9 +18,6 @@ public:
 
 private:
     int size;
-    int value;
-    Node* next;
-    Node* current;
     Node* head;
 };
 
