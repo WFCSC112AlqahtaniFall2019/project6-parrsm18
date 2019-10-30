@@ -10,8 +10,8 @@ class LinkedList{
 public:
     LinkedList();
     LinkedList(const LinkedList &list);
+    LinkedList& operator= (const LinkedList &objToCopy);
     ~LinkedList();
-    int GetValue();
     void Append(int newNode);
     void Sort();
     void PrintList();

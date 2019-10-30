@@ -8,16 +8,38 @@ using namespace std;
 
 LinkedList::LinkedList() {
     head = nullptr;
-
 }
+
 LinkedList::LinkedList(const LinkedList &list) {
-
+    Node* curr = list.head;
+    Node* copy = head;
+    while (curr->next != nullptr){
+        copy->next = new Node(curr->next->value);
+        copy = copy->next;
+        curr = curr->next;
+    }
+     cout << "Copy constructor called" << endl;
 }
+
+LinkedList& LinkedList::operator=(const LinkedList &assignment) {
+    LinkedList objToCopy;
+    swap(objToCopy.head, head);
+
+    cout << "Copy assignment operator called" << endl;
+
+    return *this;
+}
+
 LinkedList::~LinkedList() {
+    Node* curr = head;
+    Node* afterCurr = curr->next;
+    while(curr->next != nullptr){
+        delete(curr);
+        curr = afterCurr;
+        afterCurr = afterCurr->next;
+    }
 
-}
-int LinkedList::GetValue() {
-    return value;
+    cout << "Destructor called" << endl;
 }
 
 void LinkedList::Append(int newNode) {
@@ -60,16 +82,16 @@ void LinkedList::Sort() {
             previous = previous->next; // Moves previous to the next node
             curr = curr->next; // Moves current to the next node
         }
-        else { // This branch is entered when the value of the current node is less than
+        else { // This branch is entered when the value of the current node is less than the previous node
             if(curr->value < head->value){ // This branch is entered if the node that needs to be moved is less than the head in which case the head pointer needs to manipulated
-                 previous->next = curr->next;
-                 curr->next = nullptr;
-                 curr->next = head;
+                 previous->next = curr->next; // Links the previous node to the node after the current node
+                 curr->next = nullptr; // breaks the connection between current and the next node
+                 curr->next = head; // Links the current node
                  head = curr;
             }
-            else{
-                temp = head;
-                while (curr->value > temp->next->value && nullptr != temp->next){
+            else{ // This branch is entered when the node that needs to be moved is not less than the head and needs to be inserted somewhere else in the list
+                temp = head; // Sets temp to the beginning of the list
+                while (curr->value > temp->next->value && temp->next != nullptr){ // Iterates over the list and sets temp to the location that the current node needs to be set to
                     temp = temp->next;
                 }
                 previous->next = curr->next;
