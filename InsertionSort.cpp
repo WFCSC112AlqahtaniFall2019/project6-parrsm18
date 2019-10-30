@@ -31,10 +31,18 @@ int main() {
     }
 
     // print out sorted list
+    cout << "List after binary insertion sort: " << endl;
     for (int i = 0; i < v.size(); i++) {
-        cout << v[i] << endl;
+        cout << v[i] << "\t";
     }
+    cout << endl;
 
     // FINISH ME
+    cout << "List before linked list insertion sort" << endl;
+    list.PrintList();
+    cout << "List after linked list insertion sort: " << endl;
+    list.Sort();
+    list.PrintList();
+
 
 }

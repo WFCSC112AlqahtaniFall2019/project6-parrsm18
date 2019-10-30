@@ -14,6 +14,7 @@ public:
     int GetValue();
     void Append(int newNode);
     void Sort();
+    void PrintList();
 
 private:
     int size;
