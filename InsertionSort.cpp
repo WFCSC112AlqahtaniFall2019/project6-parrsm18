@@ -3,17 +3,16 @@
 #include <cassert>
 #include <ctime>
 #include "BinaryInsertionSort.h"
-#include "Node.h"
 #include "LinkedList.h"
 using namespace std;
 
 int main() {
-    for (int i = 0; i < 100; i++) {
+    //for (int i = 0; i < 100; i++) {
 
         int seed, length;
-        //cin >> seed >> length;
-        cin >> length;
-        seed = length;
+        cin >> seed >> length;
+        //cin >> length;
+        //seed = length;
         srand(seed);
 
         vector<int> v(length);
@@ -37,28 +36,32 @@ int main() {
         }
 
         // print out sorted list
-        /*cout << "List after binary insertion sort: " << endl;
+        cout << "List after binary insertion sort: " << endl;
         for (int i = 0; i < v.size(); i++) {
             cout << v[i] << "\t";
         }
-        cout << endl;*/
+        cout << endl;
 
         // FINISH ME
-        //cout << "List before linked list insertion sort" << endl;
-        //list.PrintList();
-        //cout << "List after linked list insertion sort: " << endl;
+        cout << "List before linked list insertion sort" << endl;
+        //Insertion sort using linked list
+        list.PrintList();
+        cout << "List after linked list insertion sort: " << endl;
 
         //Insertion sort using linked list
         clock_t start_linkedListInsertionSort = clock();
         list.Sort();
         clock_t end_linkedListInsertionSort = clock();
 
+        //Print out sorted list
+        list.PrintList();
+
         double elapsed_binaryInsertionSort =
                 double(end_binaryInsertionSort - start_binaryInsertionSort) / CLOCKS_PER_SEC;
         double elapsed_linkedListInsertionSort =
                 double(end_linkedListInsertionSort - start_linkedListInsertionSort) / CLOCKS_PER_SEC;
-        //list.PrintList();
 
-        cout << length << " " << elapsed_binaryInsertionSort << " " << elapsed_linkedListInsertionSort << endl;
-    }
+        //Output length and times for each algorithm
+        //cout << length << " " << elapsed_binaryInsertionSort << " " << elapsed_linkedListInsertionSort << endl;
+    //}
 }

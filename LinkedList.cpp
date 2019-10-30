@@ -18,14 +18,14 @@ LinkedList::LinkedList(const LinkedList &list) {
         copy = copy->next;
         curr = curr->next;
     }
-     //cout << "Copy constructor called" << endl;
+     cout << "Copy constructor called" << endl;
 }
 
 LinkedList& LinkedList::operator=(const LinkedList &assignment) {
     LinkedList objToCopy;
     swap(objToCopy.head, head);
 
-    //cout << "Copy assignment operator called" << endl;
+    cout << "Copy assignment operator called" << endl;
 
     return *this;
 }
@@ -39,7 +39,7 @@ LinkedList::~LinkedList() {
         afterCurr = afterCurr->next; // Moves afterCurr one position ahead of current
     }
 
-    //cout << "Destructor called" << endl;
+    cout << "Destructor called" << endl;
 }
 
 void LinkedList::Append(int newNode) {
